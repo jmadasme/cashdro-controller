@@ -12,8 +12,6 @@ Cada carpeta conserva el contenido original de su etapa, sin `.git`, dependencia
 instaladas ni binarios pesados. La documentación de operación y de código está en
 [`docs/`](docs/), y el sitio del proyecto en [`docs/index.html`](docs/index.html).
 
-> **Nota de preservación:** se removieron credenciales, claves o tokens detectados en 6 archivo(s) de esta familia. Los ejemplos y plantillas seguras se conservan.
-
 ## Índice de versiones
 
 | Versión | Qué aporta | Archivos |
@@ -35,6 +33,64 @@ python cashdro_cli.py
 
 Requiere un CashDro accesible en red y credenciales válidas. La configuración real no se incluye.
 
+<!-- ficha -->
+## Ficha de evaluación
+
+**Madurez global: 3.7/5**
+
+| Criterio | Nota | Evidencia |
+|---|---:|---|
+| Madurez | 2/5 | CLI completa por lectura y compilación, sin validación contra un equipo real ni pruebas automatizadas. |
+| Reproducibilidad | 3/5 | requirements.txt y módulos separados, pero sin simulador ni hardware el flujo queda sin ejercitar. |
+| Documentación | 5/5 | Bitácora con doce problemas, datasheet, developer y README que separa lo inferido de lo verificado. |
+| Honestidad de límites | 5/5 | Admite credenciales en texto plano, verify=False y que el manual no es el equipo. |
+| Valor demostrativo | 4/5 | Reconstruye un protocolo propietario sin SDK y con manejo explícito de estados y errores. |
+| Facilidad de despliegue | 3/5 | Python y requests; alcanza con config.py, pero operar exige un CashDro accesible en red. |
+
+Integración de un periférico de efectivo sin SDK, con separación de capas y errores tratados. La ausencia de hardware deja el flujo en estado inferido, y así se declara.
+
+## Lo que no funcionó
+
+### CashDroController — System busy tratado como caída de red
+
+Cuando el CashDro respondía -1900, el mensaje final era «Error de conexión tras 3 intentos: None», sin código ni explicación: el error de aplicación caía en el camino del error de transporte. Se agregó un contador propio para -1900 con espera de cinco segundos y un mensaje explícito.
+
+### CashDroController — Contadores de reintento que se pisaban
+
+Un único contador cubría fallos de red y respuestas de equipo ocupado, así que cada condición consumía los reintentos de la otra. Se separaron en dos variables. Al documentarlo se descubrió que el continue del -1900 también consume iteración: con tres reintentos el máximo real es tres peticiones, no seis.
+
+### CashDroController — JSON anidado de forma variable
+
+startOperation devolvía «No se recibió operationId» con code 1 porque el firmware anidaba la respuesta un nivel más: response.operation.operation.operationId. Se normalizó en el borde de cada método que lee el contrato. La tolerancia cubre un nivel extra; un tercer nivel no está contemplado.
+
+### CashDroController — Credenciales de ejemplo en el repositorio
+
+El proyecto se desarrolló contra una instalación concreta y la IP, el usuario y la contraseña quedaron en config.py y en el script de lanzamiento. Los valores pasaron a variables de entorno con marcadores 192.0.2.10 y cashdro.sh quedó pendiente de parametrizar o excluir.
+
+## Preguntas típicas
+
+**¿Qué es CashDro?**
+
+Un reciclador de efectivo que acepta y devuelve billetes/monedas.
+
+**¿Funciona sin el equipo?**
+
+La CLI se puede leer, pero las operaciones requieren el hardware.
+
+**¿Dónde van las credenciales?**
+
+En config.py, que debe completarse localmente.
+
+**¿Tiene interfaz gráfica?**
+
+No. Es una herramienta de línea de comandos.
+
+**¿Es para producción?**
+
+Es una herramienta de operación y diagnóstico; integrarla requiere validación propia.
+
+<!-- /ficha -->
+
 ## Documentación
 
 - [`docs/datasheet.md`](docs/datasheet.md) — instalación, operación y límites.
@@ -42,11 +98,11 @@ Requiere un CashDro accesible en red y credenciales válidas. La configuración 
 - [`docs/REFERENCES.md`](docs/REFERENCES.md) — estándares, librerías y fuentes.
 - [`docs/index.html`](docs/index.html) — página del proyecto (GitHub Pages).
 
-## Alcance y honestidad
+## El proyecto en detalle
 
 <div align="center">
 
-## CashDroController
+### CashDroController
 
 **Control de caja para un reciclador de efectivo CashDro, desde la consola de Windows.**
 

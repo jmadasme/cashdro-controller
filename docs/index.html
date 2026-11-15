@@ -156,6 +156,39 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 .rich .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:18px 0}
 .rich .card-grid .card{margin:0}
 
+
+.rich h3{margin:26px 0 8px}
+.rich p{margin:0 0 14px;color:var(--muted);line-height:1.7}
+.fail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:6px}
+.fail{background:rgba(11,34,43,.55);border:1px solid var(--line);border-radius:14px;padding:18px}
+.fail .v{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--warm,#D6A86A)}
+.fail h3{font-size:16px;margin:8px 0 6px}
+.fail p{font-size:14px;margin:0;color:var(--muted)}
+.rating-head{display:flex;align-items:center;gap:20px;margin:6px 0 18px;padding:18px 20px;border:1px solid var(--line);border-radius:16px;background:rgba(11,34,43,.55)}
+.rating-avg{font-family:var(--mono);font-size:40px;line-height:1;color:var(--accent)}
+.rating-avg small{font-size:14px;color:var(--muted)}
+.rating-head p{margin:4px 0 0;font-size:14px;color:var(--muted);max-width:70ch}
+.rating{display:grid;gap:2px}
+.rating-row{display:grid;grid-template-columns:165px minmax(90px,1fr) 48px;gap:14px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rating-row:last-child{border-bottom:0}
+.rating-name{font-size:13.5px;font-weight:600}
+.rating-bar{height:6px;border-radius:99px;background:rgba(148,190,200,.14);overflow:hidden}
+.rating-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.rating-score{font-family:var(--mono);font-size:12.5px;color:var(--accent);text-align:right}
+.rating-note{grid-column:2/-1;font-size:12.5px;color:var(--muted);margin-top:-4px}
+.faq{display:grid;gap:0;margin-top:4px}
+.faq details{border-bottom:1px solid var(--line);padding:14px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:15px;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";display:inline-block;width:18px;color:var(--accent);font-family:var(--mono)}
+.faq details[open] summary::before{content:"–"}
+.faq p{margin:10px 0 0 18px;font-size:14px;color:var(--muted)}
+@media(max-width:720px){
+  .fail-grid{grid-template-columns:1fr}
+  .rating-head{flex-direction:column;align-items:flex-start}
+  .rating-row{grid-template-columns:120px 1fr 44px}
+}
+
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
 </head>
@@ -188,15 +221,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">3</div><div class="stat-label">módulos</div></div><div class="stat"><div class="stat-num">1</div><div class="stat-label">equipo</div></div><div class="stat"><div class="stat-num">Windows</div><div class="stat-label">plataforma</div></div><div class="stat"><div class="stat-num">0</div><div class="stat-label">GUI</div></div></div></section>
 
-<section class="section" id="proyecto"><div class="wrap">
-  <div class="section-head reveal"><div class="kicker">01 — El proyecto</div><h2>Qué resuelve</h2><p class="section-sub">Herramienta de línea de comandos para interactuar con un reciclador de efectivo CashDro: consulta de estado, operaciones y configuración en módulos separados. Pensada para diagnóstico y automatización.</p></div>
-  <div class="two">
-    <div class="card reveal"><span class="tag">Problema</span><h3>El punto de partida</h3><p>El software del reciclador no siempre expone una forma cómoda de automatizar pruebas o consultas repetitivas.</p></div>
-    <div class="card reveal"><span class="tag">Solución</span><h3>La propuesta</h3><p>Separar cliente, API y configuración en tres archivos, con una CLI que permite ejecutar operaciones sin interfaz gráfica.</p></div>
-  </div>
-</div></section>
-
-<section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>CashDroController es una aplicación de consola para Windows que opera un reciclador de efectivo CashDro: cobrar, anular una operación, consultar estado, niveles y alarmas. Cuatro módulos separan configuración, cliente HTTP, API del equipo y menú; el flujo de cobro sondea el estado del dispositivo, contempla cancelación con Ctrl+C en dos pasos y reintenta solo cuando el equipo responde que está ocupado.</p><p>Está pensada para diagnóstico y automatización en una caja que ya tiene el hardware pero no quiere depender del SDK del fabricante. El valor está en el método: el contrato se reconstruyó desde el manual de integración, cada error de aplicación se separó del error de transporte y los céntimos se manejan como enteros. La limitación principal es la misma que su origen: no hubo equipo disponible para validar.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>CashDroController</h3><span class="count">22 archivos</span></div>
@@ -204,23 +229,23 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
   <a href="https://github.com/jmadasme/cashdro-controller/tree/main/versions/CashDroController" target="_blank" rel="noopener">Ver carpeta <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </article></div>
 </div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">01 — La idea</div><h2>El efectivo también necesita una API</h2><p class="section-sub">Un CashDro no es una caja registradora: es un periférico con estado, niveles y operaciones asíncronas. Esta consola lo opera sin esconder esa complejidad.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — La idea</div><h2>El efectivo también necesita una API</h2><p class="section-sub">Un CashDro no es una caja registradora: es un periférico con estado, niveles y operaciones asíncronas. Esta consola lo opera sin esconder esa complejidad.</p></div><div class="rich reveal"><div class="card-grid">
 <div class="card"><h3>El problema</h3><div><div></div><p>Las operaciones con efectivo tienen estados intermedios: la máquina acepta, clasifica, recicla y confirma. Una integración naive consulta una vez y asume que todo salió bien. El resultado son descuadres y tickets sin sustento.</p></div></div>
 <div class="card"><h3>La solución</h3><div><div></div><p>Una consola que modela el ciclo completo: autenticación, venta, polling de estado, reintentos ante System busy y consulta de niveles. Cada operación deja un resultado legible para el operador.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">02 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">Una venta no termina cuando se envía: termina cuando el CashDro confirma.</p></div><div class="rich reveal"><div class="timeline">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — El recorrido</div><h2>Cómo funciona, paso a paso</h2><p class="section-sub">Una venta no termina cuando se envía: termina cuando el CashDro confirma.</p></div><div class="rich reveal"><div class="timeline">
 <div class="step"><div class="step-n">01</div><h4>Autenticar</h4><div><p>La consola abre sesión contra la API del CashDro con las credenciales configuradas.</p></div></div>
 <div class="step"><div class="step-n">02</div><h4>Iniciar la operación</h4><div><p>Se envía la venta o el reciclaje con monto, POS y alias del equipo.</p></div></div>
 <div class="step"><div class="step-n">03</div><h4>Hacer polling</h4><div><p>El estado se consulta hasta que la máquina confirma, falla o se agota el timeout.</p></div></div>
 <div class="step"><div class="step-n">04</div><h4>Registrar el resultado</h4><div><p>La consola muestra el desenlace y deja el detalle para el operador.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">03 — Bajo el capó</div><h2>Una consola, un protocolo</h2><p class="section-sub">La lógica de negocio vive en la consola; el CashDro solo expone su API.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Consola CashDro Controller contra la API REST del equipo" loading="lazy"><figcaption>La consola orquesta; el CashDro ejecuta la operación física.</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Bajo el capó</div><h2>Una consola, un protocolo</h2><p class="section-sub">La lógica de negocio vive en la consola; el CashDro solo expone su API.</p></div><div class="rich reveal"><figure><img src="assets/rich/architecture.svg" alt="Consola CashDro Controller contra la API REST del equipo" loading="lazy"><figcaption>La consola orquesta; el CashDro ejecuta la operación física.</figcaption></figure>
 <div class="card-grid">
 <div class="card"><h3>Polling con timeout</h3><div><p>No se asume éxito: se consulta el estado hasta una condición final o un límite de tiempo.</p></div></div>
 <div class="card"><h3>Reintentos selectivos</h3><div><p>Solo los errores recuperables, como System busy, se reintentan.</p></div></div>
 <div class="card"><h3>Operación visible</h3><div><p>Cada paso se muestra en la consola para que el operador sepa qué está pasando.</p></div></div>
 </div></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">04 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">El efectivo no perdona la improvisación.</p></div><div class="rich reveal"><div class="features">
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Lo que lo hace distinto</div><h2>Decisiones de ingeniería</h2><p class="section-sub">El efectivo no perdona la improvisación.</p></div><div class="rich reveal"><div class="features">
 <div class="feature"><h3>Ventas y reciclaje</h3><div><p>Operaciones de cobro y de reciclaje desde la misma consola.</p></div></div>
 <div class="feature"><h3>Niveles de efectivo</h3><div><p>Consulta de estado de los compartimentos para planificar retiros.</p></div></div>
 <div class="feature"><h3>Reintentos</h3><div><p>Manejo de System busy con espera y límite.</p></div></div>
@@ -228,9 +253,9 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <div class="feature"><h3>Diagnóstico</h3><div><p>Comandos para verificar conectividad y estado del servicio.</p></div></div>
 <div class="feature"><h3>Códigos de error</h3><div><p>Tabla de errores del CashDro traducida a mensajes accionables.</p></div></div>
 </div></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">05 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/cash-flow.svg" alt="CashDro Controller — cash flow" loading="lazy"><figcaption>Cash Flow</figcaption></figure>
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Diagramas</div><h2>El sistema, en dibujos</h2><p class="section-sub">Los diagramas se mantienen en el repositorio y se actualizan con el código.</p></div><div class="rich reveal"><figure><img src="assets/rich/cash-flow.svg" alt="CashDro Controller — cash flow" loading="lazy"><figcaption>Cash Flow</figcaption></figure>
 <figure><img src="assets/rich/network.svg" alt="CashDro Controller — network" loading="lazy"><figcaption>Network</figcaption></figure></div></div></section>
-<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">06 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">Python 3 y requests. Corre en Windows, que es donde suele estar el software del CashDro. No necesita driver ni SDK del fabricante.</p></div><div class="rich reveal"><p>Python 3 requests REST/HTTPS Windows CLI El host, usuario y contraseña se configuran por variables de entorno. No se versionan credenciales reales.</p>
+<section class="section"><div class="wrap"><div class="section-head reveal"><div class="kicker">08 — Stack y arranque</div><h2>Con qué está construido</h2><p class="section-sub">Python 3 y requests. Corre en Windows, que es donde suele estar el software del CashDro. No necesita driver ni SDK del fabricante.</p></div><div class="rich reveal"><p>Python 3 requests REST/HTTPS Windows CLI El host, usuario y contraseña se configuran por variables de entorno. No se versionan credenciales reales.</p>
 <p>CashDro · operación</p>
 <pre><span>$</span> python -m venv .venv
 <span>$</span> .venv\Scripts\activate
@@ -239,13 +264,12 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <span>$</span> set CASHDRO_USER=manager
 <span>$</span> set CASHDRO_PASSWORD=cambiar
 <span>$</span> python main.py</pre></div></div></section>
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">07 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">09 — Documentación</div><h2>Todo está escrito</h2><p class="section-sub">Cada decisión, cada límite y cada comando están documentados en el repositorio. Sin folletos: lo que funciona se muestra, lo que no, también.</p></div><div class="rich reveal"><div class="card-grid">
 <a class="card" href=""><h3>La guía completa</h3><p>Operación, configuración, API, errores y mantenimiento.</p></a>
 <a class="card" href=""><h3>Manual de operación</h3><p>Comandos, estados, códigos de error y buenas prácticas.</p></a>
 <a class="card" href=""><h3>Guía de código</h3><p>Cliente HTTP, polling, reintentos y extensión.</p></a>
 <a class="card" href=""><h3>Referencias</h3><p>CashDro, API REST y requests.</p></a>
-</div></div></div></section>
-<section class="cta"><div class="wrap"><div class="cta-box reveal">
+</div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Lo que no funcionó</div><h2>Los tropiezos, documentados</h2><p class="section-sub">Las primeras versiones existen para que estos errores no se repitan: cada una dejó una decisión de diseño verificable.</p></div><div class="fail-grid reveal"><div class="fail"><div class="v">CashDroController</div><h3>System busy tratado como caída de red</h3><p>Cuando el CashDro respondía -1900, el mensaje final era «Error de conexión tras 3 intentos: None», sin código ni explicación: el error de aplicación caía en el camino del error de transporte. Se agregó un contador propio para -1900 con espera de cinco segundos y un mensaje explícito.</p></div><div class="fail"><div class="v">CashDroController</div><h3>Contadores de reintento que se pisaban</h3><p>Un único contador cubría fallos de red y respuestas de equipo ocupado, así que cada condición consumía los reintentos de la otra. Se separaron en dos variables. Al documentarlo se descubrió que el continue del -1900 también consume iteración: con tres reintentos el máximo real es tres peticiones, no seis.</p></div><div class="fail"><div class="v">CashDroController</div><h3>JSON anidado de forma variable</h3><p>startOperation devolvía «No se recibió operationId» con code 1 porque el firmware anidaba la respuesta un nivel más: response.operation.operation.operationId. Se normalizó en el borde de cada método que lee el contrato. La tolerancia cubre un nivel extra; un tercer nivel no está contemplado.</p></div><div class="fail"><div class="v">CashDroController</div><h3>Credenciales de ejemplo en el repositorio</h3><p>El proyecto se desarrolló contra una instalación concreta y la IP, el usuario y la contraseña quedaron en config.py y en el script de lanzamiento. Los valores pasaron a variables de entorno con marcadores 192.0.2.10 y cashdro.sh quedó pendiente de parametrizar o excluir.</p></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Ficha de evaluación</div><h2>Cómo se mide este proyecto</h2><p class="section-sub">Seis criterios con la misma escala en todo el catálogo, para comparar sin marketing.</p></div><div class="rating-head reveal"><div class="rating-avg">3.7<small>/5</small></div><div><strong>Madurez global</strong><p>Integración de un periférico de efectivo sin SDK, con separación de capas y errores tratados. La ausencia de hardware deja el flujo en estado inferido, y así se declara.</p></div></div><div class="rating reveal"><div class="rating-row"><div class="rating-name">Madurez</div><div class="rating-bar"><i style="width:40%"></i></div><div class="rating-score">2/5</div><div class="rating-note">CLI completa por lectura y compilación, sin validación contra un equipo real ni pruebas automatizadas.</div></div><div class="rating-row"><div class="rating-name">Reproducibilidad</div><div class="rating-bar"><i style="width:60%"></i></div><div class="rating-score">3/5</div><div class="rating-note">requirements.txt y módulos separados, pero sin simulador ni hardware el flujo queda sin ejercitar.</div></div><div class="rating-row"><div class="rating-name">Documentación</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Bitácora con doce problemas, datasheet, developer y README que separa lo inferido de lo verificado.</div></div><div class="rating-row"><div class="rating-name">Honestidad de límites</div><div class="rating-bar"><i style="width:100%"></i></div><div class="rating-score">5/5</div><div class="rating-note">Admite credenciales en texto plano, verify=False y que el manual no es el equipo.</div></div><div class="rating-row"><div class="rating-name">Valor demostrativo</div><div class="rating-bar"><i style="width:80%"></i></div><div class="rating-score">4/5</div><div class="rating-note">Reconstruye un protocolo propietario sin SDK y con manejo explícito de estados y errores.</div></div><div class="rating-row"><div class="rating-name">Facilidad de despliegue</div><div class="rating-bar"><i style="width:60%"></i></div><div class="rating-score">3/5</div><div class="rating-note">Python y requests; alcanza con config.py, pero operar exige un CashDro accesible en red.</div></div></div></div></section><section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">Preguntas típicas</div><h2>Lo que suelen preguntar</h2></div><div class="faq reveal"><details><summary>¿Qué es CashDro?</summary><p>Un reciclador de efectivo que acepta y devuelve billetes/monedas.</p></details><details><summary>¿Funciona sin el equipo?</summary><p>La CLI se puede leer, pero las operaciones requieren el hardware.</p></details><details><summary>¿Dónde van las credenciales?</summary><p>En config.py, que debe completarse localmente.</p></details><details><summary>¿Tiene interfaz gráfica?</summary><p>No. Es una herramienta de línea de comandos.</p></details><details><summary>¿Es para producción?</summary><p>Es una herramienta de operación y diagnóstico; integrarla requiere validación propia.</p></details></div></div></section><section class="cta"><div class="wrap"><div class="cta-box reveal">
   <div class="kicker">Siguiente paso</div><h2>¿Te animás?</h2>
   <p>Usá esta familia como base para cashdro controller. Está documentada para que puedas entenderla, ejecutarla y continuarla sin adivinar.</p>
   <div class="hero-actions" style="justify-content:center"><a class="btn btn-primary" href="https://github.com/jmadasme/cashdro-controller" target="_blank" rel="noopener">Abrir el repositorio <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="/iot/">Ver más de IoT</a></div>
