@@ -191,12 +191,14 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 </style>
 <link rel="stylesheet" href="assets/community.css?v=1">
+<link href="rec/player.css?v=1" rel="stylesheet"/>
 </head>
 <body>
 <header class="nav"><div class="wrap nav-in">
   <a class="brand" href="/"><span class="brand-mark"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5-9 5-9-5 9-5z"/><path d="m3 12 9 5 9-5M3 17l9 5 9-5"/></svg></span><span>jmadasme<span style="color:var(--accent)">.</span>portfolio</span></a>
   <nav class="nav-links">
-    <a href="#proyecto">Proyecto</a><a href="#versiones">Versiones</a><a href="#stack">Stack</a><a href="#docs">Docs</a><a href="#comunidad">Comunidad</a>
+    <a href="#proyecto">Proyecto</a><a href="#versiones">Versiones</a><a href="#stack">Stack</a><a href="#video">Video</a>
+<a href="#docs">Docs</a><a href="#comunidad">Comunidad</a>
     <a class="btn btn-ghost" style="padding:9px 15px" href="/iot/">← IoT</a>
   </nav>
 </div></header>
@@ -221,7 +223,46 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 
 <section class="stats"><div class="wrap stats-grid"><div class="stat"><div class="stat-num">3</div><div class="stat-label">módulos</div></div><div class="stat"><div class="stat-num">1</div><div class="stat-label">equipo</div></div><div class="stat"><div class="stat-num">Windows</div><div class="stat-label">plataforma</div></div><div class="stat"><div class="stat-num">0</div><div class="stat-label">GUI</div></div></div></section>
 
-<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>CashDroController es una aplicación de consola para Windows que opera un reciclador de efectivo CashDro: cobrar, anular una operación, consultar estado, niveles y alarmas. Cuatro módulos separan configuración, cliente HTTP, API del equipo y menú; el flujo de cobro sondea el estado del dispositivo, contempla cancelación con Ctrl+C en dos pasos y reintenta solo cuando el equipo responde que está ocupado.</p><p>Está pensada para diagnóstico y automatización en una caja que ya tiene el hardware pero no quiere depender del SDK del fabricante. El valor está en el método: el contrato se reconstruyó desde el manual de integración, cada error de aplicación se separó del error de transporte y los céntimos se manejan como enteros. La limitación principal es la misma que su origen: no hubo equipo disponible para validar.</p></div></div></section><section class="section" id="versiones"><div class="wrap">
+<section class="section tight"><div class="wrap"><div class="section-head reveal"><div class="kicker">El concepto</div><h2>Qué es y por qué existe</h2></div><div class="rich reveal"><p>CashDroController es una aplicación de consola para Windows que opera un reciclador de efectivo CashDro: cobrar, anular una operación, consultar estado, niveles y alarmas. Cuatro módulos separan configuración, cliente HTTP, API del equipo y menú; el flujo de cobro sondea el estado del dispositivo, contempla cancelación con Ctrl+C en dos pasos y reintenta solo cuando el equipo responde que está ocupado.</p><p>Está pensada para diagnóstico y automatización en una caja que ya tiene el hardware pero no quiere depender del SDK del fabricante. El valor está en el método: el contrato se reconstruyó desde el manual de integración, cada error de aplicación se separó del error de transporte y los céntimos se manejan como enteros. La limitación principal es la misma que su origen: no hubo equipo disponible para validar.</p></div></div></section>
+<section class="section tight rec-section" id="video" style="--accent:#2E7DFF;--accent2:#14F195">
+<div class="wrap">
+<div class="rec-kicker">REC · VIDEO · 3:14</div>
+<h2 class="rec-h2">CashDro Controller: cobrar efectivo sin adivinar</h2>
+<p class="rec-lead">Flujo completo de una operación CashDro: start, acknowledge, polling de estado, importación y anulación, con timeouts y reintentos.</p>
+<div class="rec-banner">
+<span class="rec-banner-icon">📋</span>
+<strong>Puedes copiar y pegar los comandos del video desde el video !!!</strong>
+<span>Pausá, seleccioná el texto de la terminal y copiá.</span>
+</div>
+<div class="rec-shell">
+<div class="rec-bar"><i></i><i></i><i></i><span class="rec-title">CashDro Controller: cobrar efectivo sin adivinar · asciinema</span><span class="rec-rec"><b></b>REC</span></div>
+<div class="rec-screen-wrap">
+<div class="rec-screen" id="rec-screen"></div>
+<div class="rec-poster" id="rec-poster">
+<div class="rec-kicker">ASCIINEMA · 3:14</div>
+<h3>CashDro Controller: cobrar efectivo sin adivinar</h3>
+<p>Flujo completo de una operación CashDro: start, acknowledge, polling de estado, importación y anulación, con timeouts y reintentos.</p>
+<div class="rec-poster-meta">cashdro-controller · código real</div>
+<button class="rec-btn rec-primary" id="rec-start" type="button">▶ Reproducir</button>
+</div>
+</div>
+<div class="rec-controls">
+<button class="rec-btn rec-primary" id="rec-play" type="button">▶ Reproducir</button>
+<button class="rec-btn" id="rec-restart" type="button">↺ Reiniciar</button>
+<input class="rec-progress" id="rec-range" type="range" min="0" max="1000" value="0" aria-label="Progreso"/>
+<span class="rec-time" id="rec-time">0:00 / 3:14</span>
+<select class="rec-speed" id="rec-speed" aria-label="Velocidad"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="2">2×</option></select>
+<button class="rec-btn" id="rec-full" type="button" title="Pantalla completa">⛶</button>
+<button class="rec-btn" id="rec-copy" type="button">⧉ Copiar comandos</button>
+<a class="rec-download" href="rec/cashdro-controller.cast" download>descargar .cast</a>
+</div>
+</div>
+<p class="rec-note">Los fragmentos son del código real del repositorio. La API usa GET con credenciales en la URL y certificado autofirmado, como documenta el propio código; la conexión real requiere una máquina y credenciales que no están en el repo.</p>
+<div class="rec-chapters"><span class="rec-chip"><b>0:06</b> EL PROBLEMA</span><span class="rec-chip"><b>0:21</b> FLUJO</span><span class="rec-chip"><b>0:36</b> CONFIGURACIÓN</span><span class="rec-chip"><b>0:52</b> LLAMADA</span><span class="rec-chip"><b>1:08</b> START</span><span class="rec-chip"><b>1:26</b> ACK</span><span class="rec-chip"><b>1:42</b> POLLING</span><span class="rec-chip"><b>2:01</b> COBRO</span><span class="rec-chip"><b>2:18</b> ANULACIÓN</span><span class="rec-chip"><b>2:34</b> ESTADO</span><span class="rec-chip"><b>2:49</b> CTRL+C</span></div>
+</div>
+</section>
+
+<section class="section" id="versiones"><div class="wrap">
   <div class="section-head reveal"><div class="kicker">02 — Versiones</div><h2>La historia, completa.</h2><p class="section-sub">Cada carpeta conserva una etapa del proyecto. No se borraron las anteriores: se pusieron en contexto.</p></div>
   <div class="versions"><article class="version reveal">
   <div class="version-top"><h3>CashDroController</h3><span class="count">22 archivos</span></div>
@@ -282,5 +323,7 @@ h2{font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-.04em;margin:
 <script>window.PORTFOLIO_COMMUNITY={account:"jmadasme",repo:"cashdro-controller",coinNamespace:"jmadasme-cashdro-controller-coins-v1",faqs:[{"q": "¿Qué es CashDro?", "a": "Un reciclador de efectivo que acepta y devuelve billetes/monedas."}, {"q": "¿Funciona sin el equipo?", "a": "La CLI se puede leer, pero las operaciones requieren el hardware."}, {"q": "¿Dónde van las credenciales?", "a": "En config.py, que debe completarse localmente."}, {"q": "¿Tiene interfaz gráfica?", "a": "No. Es una herramienta de línea de comandos."}, {"q": "¿Es para producción?", "a": "Es una herramienta de operación y diagnóstico; integrarla requiere validación propia."}]};</script>
 <script src="assets/community.js?v=2" defer></script>
 
+<script defer src="rec/cashdro-controller.cast.js?v=1"></script>
+<script defer src="rec/player.js?v=1"></script>
 </body>
 </html>
